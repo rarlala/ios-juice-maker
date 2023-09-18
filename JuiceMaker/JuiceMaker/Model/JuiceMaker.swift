@@ -20,43 +20,45 @@ struct JuiceMaker {
     case mangoKiwi
   }
   
-  func makeJuice(type: Juice) {
+  func makeJuice(type: Int) {
     do {
       switch type {
-      case .strawberry:
+      case Juice.strawberry.rawValue:
         if try store.checkInventory(fruitName: .strawberry, num: 16) {
           store.subtract(fruitName: .strawberry, num: 16)
         }
-      case .banana:
+      case Juice.banana.rawValue:
         if try store.checkInventory(fruitName: .banana, num: 2) {
           store.subtract(fruitName: .banana, num: 2)
         }
-      case .kiwi:
+      case Juice.kiwi.rawValue:
         if try store.checkInventory(fruitName: .kiwi, num: 3) {
           store.subtract(fruitName: .kiwi, num: 3)
         }
-      case .pineapple:
+      case Juice.pineapple.rawValue:
         if try store.checkInventory(fruitName: .pineapple, num: 2) {
           store.subtract(fruitName: .pineapple, num: 2)
         }
-      case .strawberryBanana:
+      case Juice.strawberryBanana.rawValue:
         let checkOne = try store.checkInventory(fruitName: .strawberry, num: 10)
         let checkTwo = try store.checkInventory(fruitName: .banana, num: 1)
         if checkOne && checkTwo {
           store.subtract(fruitName: .strawberry, num: 10)
           store.subtract(fruitName: .banana, num: 1)
         }
-      case .mango:
+      case Juice.mango.rawValue:
         if try store.checkInventory(fruitName: .mango, num: 3) {
           store.subtract(fruitName: .mango, num: 3)
         }
-      case .mangoKiwi:
+      case Juice.mangoKiwi.rawValue:
         let checkOne = try store.checkInventory(fruitName: .mango, num: 2)
         let checkTwo = try store.checkInventory(fruitName: .kiwi, num: 1)
         if checkOne && checkTwo {
           store.subtract(fruitName: .mango, num: 2)
           store.subtract(fruitName: .kiwi, num: 1)
         }
+      default:
+        print("잘못된 주문입니다.")
       }
     } catch FruitStoreError.outOfStock {
       print("재료가 없습니다.")
