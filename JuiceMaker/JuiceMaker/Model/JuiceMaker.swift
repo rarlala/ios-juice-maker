@@ -4,7 +4,7 @@
 //  Copyright © yagom academy. All rights reserved.
 // 
 
-import Foundation
+import UIKit
 
 // 쥬스 메이커 타입
 struct JuiceMaker {
@@ -20,7 +20,7 @@ struct JuiceMaker {
     case mangoKiwi
   }
   
-  func makeJuice(type: Int) {
+  func makeJuice(type: Int, juiceName: String) -> String {
     do {
       switch type {
       case Juice.strawberry.rawValue:
@@ -58,12 +58,13 @@ struct JuiceMaker {
           store.subtract(fruitName: .kiwi, num: 1)
         }
       default:
-        print("잘못된 주문입니다.")
+        return "잘못된 주문입니다."
       }
     } catch FruitStoreError.outOfStock {
-      print("재료가 없습니다.")
+      return "재료가 모자라요. 재고를 수정할까요?"
     } catch let error {
-      print("또 다른 에러 발생 \(error)")
+      return  "또 다른 에러 발생 \(error)"
     }
+    return "\(juiceName) 나왔습니다! 맛있게 드세요!"
   }
 }
