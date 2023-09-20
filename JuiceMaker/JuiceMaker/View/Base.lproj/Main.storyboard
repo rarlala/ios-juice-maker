@@ -13,7 +13,7 @@
         <!--맛있는 쥬스를 만들어 드려요!-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ViewController" id="BYZ-38-t0r" customClass="ViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="844" height="390"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -275,6 +275,7 @@
         <!--재고 추가-->
         <scene sceneID="fkG-vv-hpE">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="editStoreView" id="Yu1-lM-nqp" customClass="EditStoreViewController" customModule="JuiceMaker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tKV-4l-Vtc">
                         <rect key="frame" x="0.0" y="0.0" width="844" height="390"/>
@@ -412,6 +413,15 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oGm-2T-2K2">
+                                <rect key="frame" x="728" y="22" width="54" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="닫기"/>
+                                <connections>
+                                    <action selector="dismissButtonTapped:" destination="Yu1-lM-nqp" eventType="touchUpInside" id="spH-sX-o7M"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="gcO-Xb-kNs"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -420,15 +430,11 @@
                             <constraint firstItem="7MH-0F-wAJ" firstAttribute="centerY" secondItem="tKV-4l-Vtc" secondAttribute="centerY" id="4ro-xW-Qnb"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="재고 추가" id="rO2-xT-2dN">
-                        <barButtonItem key="rightBarButtonItem" title="닫기" id="zYB-4i-afO">
-                            <connections>
-                                <action selector="dismissButtonTapped:" destination="Yu1-lM-nqp" id="wAs-cN-Aag"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="재고 추가" id="rO2-xT-2dN"/>
+                    <connections>
+                        <outlet property="strLable" destination="0yV-kn-zaT" id="ppg-0e-88p"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Ieh-6D-g1l" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1637" y="901"/>
         </scene>

@@ -8,6 +8,8 @@ import UIKit
 
 class ViewController: UIViewController {
   
+  var delegate: EditStoreDelegate?
+  
   let juiceMaker = JuiceMaker()
   
   @IBOutlet weak var strawberryNumberLabel: UILabel!
@@ -45,9 +47,11 @@ class ViewController: UIViewController {
       alert.addAction(UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: nil))
     } else if type == .twoButton {
       alert.addAction(UIAlertAction(title: "예", style: UIAlertAction.Style.default, handler: { _ in
-        guard let editStoreView = self.storyboard?.instantiateViewController(identifier: "editStoreView") else { return }
+        guard let editStoreView = self.storyboard?.instantiateViewController(identifier: "editStoreView") as? EditStoreViewController else { return }
         editStoreView.modalTransitionStyle = .coverVertical
         editStoreView.modalPresentationStyle = .automatic
+        
+        editStoreView.sendData(str: String(self.juiceMaker.store.getNum(fruitName: Fruit.strawberry)))
         self.present(editStoreView, animated: true, completion: nil)
       }))
       alert.addAction(UIAlertAction(title: "아니오", style: UIAlertAction.Style.cancel, handler: nil))
