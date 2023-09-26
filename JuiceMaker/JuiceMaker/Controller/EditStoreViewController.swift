@@ -9,8 +9,6 @@ import UIKit
 
 final class EditStoreViewController: UIViewController {
   
-  weak var delegate: DismissEditStoreViewDelegate?
-  
   private let store = FruitStore.shared
   
   @IBOutlet var numberLabelCollection: [UILabel]!
@@ -50,30 +48,20 @@ final class EditStoreViewController: UIViewController {
     }
   }
   
-  
-  @IBAction func dismissButtonTapped(_ sender: UIBarButtonItem) {
+  @IBAction private func dismissButtonTapped(_ sender: UIBarButtonItem) {
     for numberLabel in numberLabelCollection {
       guard let stringNumberValue = numberLabel.text else { return }
       guard let currentFruitValue = Int(stringNumberValue) else { return }
       guard let currentFruitName = Fruit(rawValue: numberLabel.tag) else { return }
       store.update(fruitName: currentFruitName, number: currentFruitValue)
     }
-    
-    self.delegate?.updateData()
+    notificate()
     self.dismiss(animated: true)
   }
   
-//  @IBAction private func dismissButtonTapped(_ sender: UIButton) {
-//    for numberLabel in numberLabelCollection {
-//      guard let stringNumberValue = numberLabel.text else { return }
-//      guard let currentFruitValue = Int(stringNumberValue) else { return }
-//      guard let currentFruitName = Fruit(rawValue: numberLabel.tag) else { return }
-//      store.update(fruitName: currentFruitName, number: currentFruitValue)
-//    }
-//    
-//    self.delegate?.updateData()
-//    self.dismiss(animated: true)
-//  }
+  private func notificate() {
+    NotificationCenter.default.post(name: NSNotification.Name("TestNotification"), object: nil, userInfo: nil)
+  }
   
   @IBAction private func stepperButtonTapped(_ sender: UIStepper) {
     guard let currentFruitName = Fruit(rawValue: sender.tag) else { return }

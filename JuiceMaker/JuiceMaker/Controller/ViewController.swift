@@ -6,11 +6,7 @@
 
 import UIKit
 
-protocol DismissEditStoreViewDelegate: AnyObject {
-  func updateData()
-}
-
-final class ViewController: UIViewController, DismissEditStoreViewDelegate, UINavigationControllerDelegate {
+final class ViewController: UIViewController, UINavigationControllerDelegate {
   
   private let juiceMaker = JuiceMaker()
   
@@ -23,29 +19,10 @@ final class ViewController: UIViewController, DismissEditStoreViewDelegate, UINa
   override func viewDidLoad() {
     super.viewDidLoad()
     setNumberLabel()
+    NotificationCenter.default.addObserver(self, selector: #selector(updateData(_:)), name: NSNotification.Name("TestNotification"), object: nil)
   }
   
-  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    print(segue.destination)
-    if segue.destination is UINavigationController {
-      guard let editStoreViewNavigation = segue.destination as? UINavigationController else { return }
-      guard let editStoreView = storyboard?.instantiateViewController(identifier: "EditStoreView") as? EditStoreViewController else { return }
-      editStoreView.delegate = self
-    }
-  }
   
-  func updateData() {
-    setNumberLabel()
-    print("delegate")
-  }
-  
-  func setNumberLabel() {
-    strawberryNumberLabel.text = String(juiceMaker.store.getNum(fruitName: Fruit.strawberry))
-    bananaNumberLabel.text = String(juiceMaker.store.getNum(fruitName: Fruit.banana))
-    pineappleNumberLabel.text = String(juiceMaker.store.getNum(fruitName: Fruit.pineapple))
-    kiwiNumberLabel.text = String(juiceMaker.store.getNum(fruitName: Fruit.kiwi))
-    mangoNumberLabel.text = String(juiceMaker.store.getNum(fruitName: Fruit.mango))
-  }
   
   @IBAction private func juiceOrderButtonTapped(_ sender: UIButton) {
     guard let buttonName = sender.titleLabel?.text else { return }
@@ -70,5 +47,17 @@ final class ViewController: UIViewController, DismissEditStoreViewDelegate, UINa
     
     alert.addAction(UIAlertAction(title: outOfStock ? "아니오" : "확인", style: UIAlertAction.Style.cancel, handler: nil))
     self.present(alert, animated: true, completion: nil)
+  }
+  
+  @objc private func updateData(_ notification: Notification) {
+    setNumberLabel()
+  }
+  
+  private func setNumberLabel() {
+    strawberryNumberLabel.text = String(juiceMaker.store.getNum(fruitName: Fruit.strawberry))
+    bananaNumberLabel.text = String(juiceMaker.store.getNum(fruitName: Fruit.banana))
+    pineappleNumberLabel.text = String(juiceMaker.store.getNum(fruitName: Fruit.pineapple))
+    kiwiNumberLabel.text = String(juiceMaker.store.getNum(fruitName: Fruit.kiwi))
+    mangoNumberLabel.text = String(juiceMaker.store.getNum(fruitName: Fruit.mango))
   }
 }
