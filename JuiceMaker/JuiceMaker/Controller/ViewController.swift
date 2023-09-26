@@ -10,7 +10,7 @@ protocol DismissEditStoreViewDelegate: AnyObject {
   func updateData()
 }
 
-final class ViewController: UIViewController, DismissEditStoreViewDelegate {
+final class ViewController: UIViewController, DismissEditStoreViewDelegate, UINavigationControllerDelegate {
   
   private let juiceMaker = JuiceMaker()
   
@@ -26,14 +26,17 @@ final class ViewController: UIViewController, DismissEditStoreViewDelegate {
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    if segue.destination is EditStoreViewController {
-      guard let editStoreView = segue.destination as? EditStoreViewController else { return }
-      sendData(view: editStoreView)
+    print(segue.destination)
+    if segue.destination is UINavigationController {
+      guard let editStoreViewNavigation = segue.destination as? UINavigationController else { return }
+      guard let editStoreView = storyboard?.instantiateViewController(identifier: "EditStoreView") as? EditStoreViewController else { return }
+      editStoreView.delegate = self
     }
   }
   
   func updateData() {
     setNumberLabel()
+    print("delegate")
   }
   
   func setNumberLabel() {
@@ -58,19 +61,14 @@ final class ViewController: UIViewController, DismissEditStoreViewDelegate {
     
     if outOfStock {
       alert.addAction(UIAlertAction(title: "예", style: UIAlertAction.Style.default, handler: { [self] _ in
-        guard let editStoreView = self.storyboard?.instantiateViewController(identifier: "editStoreView") as? EditStoreViewController else { return }
+        guard let editStoreView = self.storyboard?.instantiateViewController(identifier: "EditStoreView") as? EditStoreViewController else { return }
         editStoreView.modalTransitionStyle = .coverVertical
         editStoreView.modalPresentationStyle = .automatic
-        sendData(view: editStoreView)
-        self.present(editStoreView, animated: true, completion: nil)
+        performSegue(withIdentifier: "EditStoreViewSegue", sender: nil)
       }))
     }
     
     alert.addAction(UIAlertAction(title: outOfStock ? "아니오" : "확인", style: UIAlertAction.Style.cancel, handler: nil))
     self.present(alert, animated: true, completion: nil)
-  }
-  
-  private func sendData(view: EditStoreViewController) {
-    view.delegate = self
   }
 }

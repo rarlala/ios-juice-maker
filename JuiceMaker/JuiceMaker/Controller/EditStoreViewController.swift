@@ -50,7 +50,8 @@ final class EditStoreViewController: UIViewController {
     }
   }
   
-  @IBAction private func dismissButtonTapped(_ sender: UIButton) {
+  
+  @IBAction func dismissButtonTapped(_ sender: UIBarButtonItem) {
     for numberLabel in numberLabelCollection {
       guard let stringNumberValue = numberLabel.text else { return }
       guard let currentFruitValue = Int(stringNumberValue) else { return }
@@ -61,6 +62,18 @@ final class EditStoreViewController: UIViewController {
     self.delegate?.updateData()
     self.dismiss(animated: true)
   }
+  
+//  @IBAction private func dismissButtonTapped(_ sender: UIButton) {
+//    for numberLabel in numberLabelCollection {
+//      guard let stringNumberValue = numberLabel.text else { return }
+//      guard let currentFruitValue = Int(stringNumberValue) else { return }
+//      guard let currentFruitName = Fruit(rawValue: numberLabel.tag) else { return }
+//      store.update(fruitName: currentFruitName, number: currentFruitValue)
+//    }
+//    
+//    self.delegate?.updateData()
+//    self.dismiss(animated: true)
+//  }
   
   @IBAction private func stepperButtonTapped(_ sender: UIStepper) {
     guard let currentFruitName = Fruit(rawValue: sender.tag) else { return }
