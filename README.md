@@ -197,7 +197,13 @@
   - [[iOS] AutoLayout 정복하기](https://babbab2.tistory.com/133)
   - [[iOS] IBOutlet Collection](https://beansbin-develop.tistory.com/6)
 
-- 화면전환과 데이터 전송 - [[iOS] 화면간 데이터 전달하기](https://velog.io/@heyksw/iOS-화면간-데이터-전달하기) - [[iOS] 데이터 전달 방식 4가지 - property, delegate, closure, NotificationCenter](https://hellozo0.tistory.com/365) - [navigation 컨트롤러가 2개인 이유와 present Modally로 연결한 이유](https://stackoverflow.com/questions/14977164/when-i-should-use-navigation-controller) - [NotificationCenter와 사용법](https://medium.com/hcleedev/swift-notificationcenter%EC%99%80-%EC%82%AC%EC%9A%A9%EB%B2%95-6eb4490aac88) - [[iOS] performSegue](https://jiyeonlab.tistory.com/8)
+- 화면전환과 데이터 전송
+
+  - [[iOS] 화면간 데이터 전달하기](https://velog.io/@heyksw/iOS-화면간-데이터-전달하기)
+  - [[iOS] 데이터 전달 방식 4가지 - property, delegate, closure, NotificationCenter](https://hellozo0.tistory.com/365)
+  - [navigation 컨트롤러가 2개인 이유와 present Modally로 연결한 이유](https://stackoverflow.com/questions/14977164/when-i-should-use-navigation-controller)
+  - [NotificationCenter와 사용법](https://medium.com/hcleedev/swift-notificationcenter%EC%99%80-%EC%82%AC%EC%9A%A9%EB%B2%95-6eb4490aac88)
+  - [[iOS] performSegue](https://jiyeonlab.tistory.com/8)
 
 - 스텝퍼 구현
 
