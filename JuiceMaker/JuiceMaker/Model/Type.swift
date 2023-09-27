@@ -7,10 +7,10 @@
 
 import Foundation
 
-enum Fruit: String {
+enum Fruit: Int {
   case strawberry
-  case pineapple
   case banana
+  case pineapple
   case kiwi
   case mango
 }

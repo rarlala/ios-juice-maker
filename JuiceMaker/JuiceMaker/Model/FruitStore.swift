@@ -19,10 +19,8 @@ class FruitStore {
     }
   }
   
-  func add(fruitName: Fruit, number: Int) {
-    let currentNumber = getNum(fruitName: fruitName)
-    let result = currentNumber + number
-    inventory.updateValue(result, forKey: fruitName)
+  func update(fruitName: Fruit, number: Int) {
+    inventory.updateValue(number, forKey: fruitName)
   }
   
   func subtract(fruitName: Fruit, number: Int) {
